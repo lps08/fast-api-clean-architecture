@@ -1,6 +1,6 @@
 from abc import ABC, abstractclassmethod
 from typing import List
-from app.core.entities.item import Item
+from core.entities.item import Item
 
 class ItemRepositoryInterface(ABC):
     @abstractclassmethod
