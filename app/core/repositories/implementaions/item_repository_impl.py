@@ -13,4 +13,4 @@ class ItemRepositoryImpl(ItemRepositoryInterface):
         return item
     
     def get_all(self) -> List[Item]:
-        return self.list
+        return [Item(f'teste{i}', f'description{i}') for i in range(10)]

@@ -1,0 +1,1 @@
+CONFIG_PATH = 'api/settings/config.ini'
