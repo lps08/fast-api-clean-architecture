@@ -1,5 +1,5 @@
-from app.core.repositories.interfaces.item_repository_interface import ItemRepositoryInterface
-from app.core.entities.item import Item
+from core.repositories.interfaces.item_repository_interface import ItemRepositoryInterface
+from core.entities.item import Item
 from typing import List
 
 class ItemRepositoryImpl(ItemRepositoryInterface):
