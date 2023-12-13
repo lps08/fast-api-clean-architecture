@@ -1,4 +1,5 @@
-class Item:
-    def __init__(self, name, description) -> None:
-        self.name = name
-        self.description = description
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    description: str

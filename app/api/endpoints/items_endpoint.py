@@ -4,22 +4,19 @@ from core.usecases.implementations.create_item_usecase_impl import CreateItemsUs
 from core.usecases.implementations.get_all_item_usecase_impl import GetAllItemsUseCaseImpl
 from fastapi import Depends
 from api.dependencies import dependencies
+from core.entities.item import Item
+from typing import List
 
 router = APIRouter()
 
-@router.post("/item")
-async def create_item(name:str, description:str, service:ItemServiceInterface = Depends(dependencies.get_item_service)):
+@router.post("/item", response_model=Item)
+async def create_item(name:str, description:str, service:ItemServiceInterface = Depends(dependencies.get_item_service)) -> Item:
     create_item_usecase = CreateItemsUseCaseImpl(service)
     item = create_item_usecase.execute(name, description)
-    return {
-        "name" : item.name,
-        "description" : item.description
-    }
+    return item
 
-@router.get("/items")
-async def read_items(service:ItemServiceInterface = Depends(dependencies.get_item_service)):
+@router.get("/items", response_model=List[Item])
+async def read_items(service:ItemServiceInterface = Depends(dependencies.get_item_service)) -> List[Item]:
     get_all_usecase = GetAllItemsUseCaseImpl(service)
     items = get_all_usecase.execute()
-    return {
-        'items' : [{"name":item.name, "description":item.description} for item in items]
-    }
+    return items
